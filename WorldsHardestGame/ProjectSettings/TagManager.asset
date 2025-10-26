@@ -7,7 +7,6 @@ TagManager:
   - Trap
   - Coin
   - Checkpoint
-  - Start
   - End
   layers:
   - Default
