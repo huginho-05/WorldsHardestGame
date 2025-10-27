@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class playerInteractions : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class playerInteractions : MonoBehaviour
     [SerializeField] private Vector3 spawnPosition;
     
     private List<GameObject> collectedCoins = new List<GameObject>();
+    
+    [SerializeField] private string sceneToLoad;
 
 
     void Start()
@@ -36,11 +39,13 @@ public class playerInteractions : MonoBehaviour
 
         }
         
+        //Al pasar por un checkpoint, la posicion inicial cambia a la del checkpoint
         if (other.gameObject.CompareTag("Checkpoint"))
         {
             initialPosition = other.transform.position;
         }
 
+        //Contador de monedas
         if (other.gameObject.CompareTag("Coin"))
         {
             coinsCounter++;
@@ -51,6 +56,12 @@ public class playerInteractions : MonoBehaviour
                 collectedCoins.Add(other.gameObject);
             }
 
+        }
+        
+        //Cuando llega al final del nivel, cambia al siguiente
+        if (other.gameObject.CompareTag("End"))
+        {
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
