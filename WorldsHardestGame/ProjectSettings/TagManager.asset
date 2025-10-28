@@ -8,6 +8,8 @@ TagManager:
   - Coin
   - Checkpoint
   - End
+  - Start
+  - ActivableWall
   layers:
   - Default
   - TransparentFX

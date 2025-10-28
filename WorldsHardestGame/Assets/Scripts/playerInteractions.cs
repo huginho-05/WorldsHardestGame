@@ -9,18 +9,31 @@ public class playerInteractions : MonoBehaviour
     private int killCounter = 0;
     
     private int coinsCounter = 0;
-    
+
     [SerializeField] private Vector3 spawnPosition;
+
+    [SerializeField] private int coinsInScene;
     
-    private List<GameObject> collectedCoins = new List<GameObject>();
+    public List<GameObject> collectedCoins = new List<GameObject>();
     
     [SerializeField] private string sceneToLoad;
+    
+    private GameObject activableWall;
 
 
     void Start()
     {
         this.gameObject.transform.position = spawnPosition;
         initialPosition = transform.position; 
+        activableWall = GameObject.Find("ActivableWall");
+    }
+
+    void Update()
+    {
+        if (coinsCounter == coinsInScene)
+        {
+            activableWall.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +43,8 @@ public class playerInteractions : MonoBehaviour
         {
             transform.position = initialPosition;
             killCounter++;
+            coinsCounter = 0;
+            activableWall.SetActive(true);
 
             foreach (GameObject coin in collectedCoins)
             {
@@ -37,6 +52,20 @@ public class playerInteractions : MonoBehaviour
                     coin.SetActive(true);
             }
 
+        }
+        
+        if (other.gameObject.CompareTag("ActivableWall"))
+        {
+            transform.position = initialPosition;
+            killCounter++;
+            coinsCounter = 0;
+            activableWall.SetActive(true);
+
+            foreach (GameObject coin in collectedCoins)
+            {
+                if (coin != null)
+                    coin.SetActive(true);
+            }
         }
         
         //Al pasar por un checkpoint, la posicion inicial cambia a la del checkpoint
