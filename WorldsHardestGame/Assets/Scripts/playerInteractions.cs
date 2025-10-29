@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class playerInteractions : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class playerInteractions : MonoBehaviour
     [SerializeField] private string sceneToLoad;
     
     private GameObject activableWall;
+    
+    [SerializeField] private TMP_Text CoinCountText;
 
 
     void Start()
@@ -84,6 +87,8 @@ public class playerInteractions : MonoBehaviour
             {
                 collectedCoins.Add(other.gameObject);
             }
+
+            CoinCountText.text = coinsCounter + " / " + coinsInScene;
 
         }
         
