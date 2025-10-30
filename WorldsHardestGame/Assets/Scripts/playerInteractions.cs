@@ -47,6 +47,7 @@ public class playerInteractions : MonoBehaviour
             transform.position = initialPosition;
             killCounter++;
             coinsCounter = 0;
+            CoinCountText.text = coinsCounter + " / " + coinsInScene;
             activableWall.SetActive(true);
 
             foreach (GameObject coin in collectedCoins)
@@ -62,6 +63,7 @@ public class playerInteractions : MonoBehaviour
             transform.position = initialPosition;
             killCounter++;
             coinsCounter = 0;
+            CoinCountText.text = coinsCounter + " / " + coinsInScene;
             activableWall.SetActive(true);
 
             foreach (GameObject coin in collectedCoins)
