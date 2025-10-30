@@ -6,8 +6,6 @@ using TMPro;
 public class playerInteractions : MonoBehaviour
 {
     private Vector3 initialPosition;
-
-    private int killCounter = 0;
     
     private int coinsCounter = 0;
 
@@ -45,7 +43,6 @@ public class playerInteractions : MonoBehaviour
         if (other.gameObject.CompareTag("Trap"))
         {
             transform.position = initialPosition;
-            killCounter++;
             coinsCounter = 0;
             CoinCountText.text = coinsCounter + " / " + coinsInScene;
             activableWall.SetActive(true);
@@ -58,10 +55,10 @@ public class playerInteractions : MonoBehaviour
 
         }
         
+        //La puerta de la salida solo se abre al recoger todas las monedas del nivel
         if (other.gameObject.CompareTag("ActivableWall"))
         {
             transform.position = initialPosition;
-            killCounter++;
             coinsCounter = 0;
             CoinCountText.text = coinsCounter + " / " + coinsInScene;
             activableWall.SetActive(true);
@@ -71,12 +68,6 @@ public class playerInteractions : MonoBehaviour
                 if (coin != null)
                     coin.SetActive(true);
             }
-        }
-        
-        //Al pasar por un checkpoint, la posicion inicial cambia a la del checkpoint
-        if (other.gameObject.CompareTag("Checkpoint"))
-        {
-            initialPosition = other.transform.position;
         }
 
         //Contador de monedas
