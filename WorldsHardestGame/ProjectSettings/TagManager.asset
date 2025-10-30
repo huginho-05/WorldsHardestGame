@@ -10,6 +10,7 @@ TagManager:
   - End
   - Start
   - ActivableWall
+  - Audio
   layers:
   - Default
   - TransparentFX

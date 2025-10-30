@@ -20,6 +20,8 @@ public class playerInteractions : MonoBehaviour
     private GameObject activableWall;
     
     [SerializeField] private TMP_Text CoinCountText;
+    
+    audioManager audioManager;
 
 
     void Start()
