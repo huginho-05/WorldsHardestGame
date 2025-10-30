@@ -23,6 +23,10 @@ public class playerInteractions : MonoBehaviour
     
     audioManager audioManager;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<audioManager>();
+    }
 
     void Start()
     {
@@ -54,6 +58,8 @@ public class playerInteractions : MonoBehaviour
                 if (coin != null)
                     coin.SetActive(true);
             }
+            
+            audioManager.PlaySFX(audioManager.death);
 
         }
         
@@ -70,6 +76,8 @@ public class playerInteractions : MonoBehaviour
                 if (coin != null)
                     coin.SetActive(true);
             }
+            
+            audioManager.PlaySFX(audioManager.death);
         }
 
         //Contador de monedas
@@ -84,6 +92,8 @@ public class playerInteractions : MonoBehaviour
             }
 
             CoinCountText.text = coinsCounter + " / " + coinsInScene;
+            
+            audioManager.PlaySFX(audioManager.coin);
 
         }
         
@@ -91,6 +101,7 @@ public class playerInteractions : MonoBehaviour
         if (other.gameObject.CompareTag("End"))
         {
             SceneManager.LoadScene(sceneToLoad);
+            audioManager.PlaySFX(audioManager.checkpoint);
         }
     }
 }
